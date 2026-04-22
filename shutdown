@@ -1,0 +1,35 @@
+include <Keyboard.h>
+
+void setup() {
+  Keyboard.begin();
+  delay(3000);
+
+  // Переключение раскладки на EN (пробуем дважды на случай третьей раскладки)
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press(' ');
+  Keyboard.releaseAll();
+  delay(400);
+
+  // Win+R
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press('r');
+  Keyboard.releaseAll();
+  delay(800);
+
+  // Вводим cmd
+  Keyboard.println("cmd");
+  delay(1000);
+
+  // На случай, если cmd открылся с русской — переключаем ещё раз
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press(' ');
+  Keyboard.releaseAll();
+  delay(400);
+
+  // Команда выключения
+  Keyboard.println("shutdown -s -f -t 0");
+
+  Keyboard.end();
+}
+
+void loop() {}
